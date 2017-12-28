@@ -8,10 +8,10 @@ import {increment,decrement} from '../reducers/reduxActionReducer'
         return(
             <View style={{padding:20}}>
                 <Text>{this.props.counter}</Text>
-                <TouchableOpacity onPress={()=>this.props.increment()}>
+                <TouchableOpacity onPress={()=>this.props.increment(11)}>
                     <Text>+</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>this.props.decrement()} >
+                <TouchableOpacity onPress={()=>this.props.decrement(-1)} >
                     <Text>-</Text>
                 </TouchableOpacity>
             </View>

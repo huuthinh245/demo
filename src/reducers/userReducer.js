@@ -1,5 +1,5 @@
 import * as ActionTypes from '../types'
-import {} from 'redux-actions'
+
 
 export default (state = { data: '', error: '', fetching: false, arr: [] }, action) => {
       switch (action.type) {
