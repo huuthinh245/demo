@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, View, TextInput, } from 'react-native'
+import { ActivityIndicator, View, TextInput, Dimensions, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 import { Container, Header, Content, Button, Text } from 'native-base'
 import * as ActionTypes from '../types'
 import firebase from 'firebase'
+
+
+
+var { height, width } = Dimensions.get('window');
+
 class login extends Component {
+    static navigationOptions = {
+        header: null
+    }
     constructor(props) {
         super(props)
         console.disableYellowBox = true
         this.state = { username: 'huuthinh2209@gmail.com', password: '123456' }
     }
     componentDidMount() {
-       
+
     }
     _login() {
-        const {rootNav}=this.props.screenProps;
+        const { rootNav } = this.props.screenProps;
         rootNav.navigate('Home')
         //const { username, password } = this.state
         // this.setState({ loading: true })
@@ -33,37 +41,39 @@ class login extends Component {
                 </Button>
                 :
                 <Button block info style={styles.buttonStyle} onPress={() => this._login()}>
-                    <Text>Login</Text>
+                    <Text style={styles.textStyle}>Login</Text>
                 </Button>
         )
     }
 
     render() {
-        console.log(this.props)
+
         return (
-            <View style={{ flex: 1, padding: 10, justifyContent: 'center',}}>
-                <View style={{ marginBottom: 5, alignItems: 'center' }}>
-                    <TextInput
-                        style={{ width: 400, borderWidth: 1, borderRadius: 10 }}
-                        underlineColorAndroid='rgba(0,0,0,0)'
-                        onChangeText={(username) => this.setState({ username })}
-                        value={this.state.username}
-                    />
+            <View style={{ flex: 1, padding: 10, justifyContent: 'center', backgroundColor: '#BBD2C5' }}>
+                <View style={{ marginTop: width / 2 }}>
+                    <View style={{ marginBottom: 10, alignItems: 'center' }}>
+                        <TextInput
+                            style={{ width: 400, backgroundColor: 'white', borderRadius: 50 }}
+                            underlineColorAndroid='rgba(0,0,0,0)'
+                            onChangeText={(username) => this.setState({ username })}
+                            value={this.state.username}
+                        />
+                    </View>
+                    <View style={{ marginBottom: 10, alignItems: 'center' }}>
+                        <TextInput
+                            style={{ width: 400, backgroundColor: 'white', borderRadius: 50, }}
+                            underlineColorAndroid='rgba(0,0,0,0)'
+                            onChangeText={(password) => this.setState({ password })}
+                            value={this.state.password}
+                        />
+                    </View>
+                    <Text style={{ color: 'red', textAlign: 'center' }}>{this.props.message}</Text>
+                    <Text style={{ color: 'red', textAlign: 'center' }}>{this.props.email}</Text>
+                    {this.renderButton()}
+                    <Button block info style={styles.buttonStyle} onPress={() => this.props.navigation.navigate('Register')}>
+                        <Text style={styles.textStyle}>register</Text>
+                    </Button>
                 </View>
-                <View style={{ marginBottom: 5, alignItems: 'center' }}>
-                    <TextInput
-                        style={{ width: 400, borderWidth: 1, borderRadius: 10 ,}}
-                        underlineColorAndroid='rgba(0,0,0,0)'
-                        onChangeText={(password) => this.setState({ password })}
-                        value={this.state.password}
-                    />
-                </View>
-                <Text style={{ color: 'red', textAlign: 'center' }}>{this.props.message}</Text>
-                <Text style={{ color: 'red', textAlign: 'center' }}>{this.props.email}</Text>
-                {this.renderButton()}
-                <Button block info style={styles.buttonStyle} onPress={() => this.props.navigation.navigate('Register')}>
-                    <Text>register</Text>
-                </Button>
             </View>
         )
     }
@@ -79,7 +89,7 @@ const styles = {
     },
     buttonStyle: {
         alignSelf: 'stretch',
-        // backgroundColor: 'rgb(199, 216, 249)',
+        backgroundColor: '#E0EAFC',
         // borderRadius: 5,
         // borderColor: '#007aff',
         marginLeft: 5,

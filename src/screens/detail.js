@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ViewPagerAndroid } from 'react-native';
+import { View, Text, TouchableOpacity, Platform } from 'react-native';
 import axios from 'axios'
 import { connect } from 'react-redux'
 import * as ActionTypes from '../types'
- class detail extends Component {
-    static navigationOptions =({navigation, screenProps}) =>({
-        title:'detail',
+import {Icon} from 'native-base'
+class detail extends Component {
+    static navigationOptions = ({ navigation, screenProps }) => ({
+        title: 'detail',
+        headerStyle:{
+            backgroundColor:'#2980b9'
+        },
         headerLeft: (
             <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text>back</Text>
+                <Icon name="arrow-back" />
             </TouchableOpacity>
         ),
-        headerRight: <View/>,
-        headerTitleStyle:{
+        headerRight: (Platform.OS==='android') ? <View/> : null ,
+        headerTitleStyle: {
+            color:'white',
             alignSelf: 'center',
             justifyContent: 'space-between',
-            textAlign: 'center',
 
         }
 
     })
 
     componentDidMount() {
-        axios.get('https://api.github.com/users/messi')
-            .then(respone => {
-                const {data} =respone
-                console.log(data)
-                this.props.dispatch({ type: ActionTypes.ADD_USER, payload: data })
-            })
+
     }
     render() {
         return (

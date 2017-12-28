@@ -29,7 +29,11 @@ class MainHome extends Component {
             justifyContent: 'space-between',
             textAlign: 'center',
 
-        }
+        },
+        // style header
+        headerStyle:{
+            backgroundColor:'#2980b9'
+        },
     }
     constructor(props) {
         super(props)
