@@ -1,11 +1,14 @@
 import detail from './screens/detail'
 import MainHome from './Main'
-import {addNavigationHelpers,StackNavigator} from 'react-navigation'
+import { addNavigationHelpers, StackNavigator } from 'react-navigation'
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import {TouchableOpacity,Text} from 'react-native'
 const stackMain = {
     Main: { screen: MainHome },
-    Detail: { screen: detail }
+    Detail: {
+        screen: detail,
+    }
 }
 const StackMainConfig = {
     navigationOption: {
@@ -15,22 +18,22 @@ const StackMainConfig = {
 export const MainNavigator = StackNavigator(stackMain, StackMainConfig);
 
 class MainNavigatorState extends React.Component {
-    render(){
-        return(
-            <MainNavigator 
-                screenProps={{rootNavigation:this.props.navigation}}
+    render() {
+        return (
+            <MainNavigator
+                screenProps={{ rootNavigation: this.props.navigation }}
                 navigation={
                     addNavigationHelpers({
-                        dispatch:this.props.dispatch,
-                        state:this.props.homeNav                        
+                        dispatch: this.props.dispatch,
+                        state: this.props.homeNav
                     })
                 }
             />
         )
     }
-} 
-const mapStateToProps =(state) =>{
-   return  {homeNav:state.homeNav}
+}
+const mapStateToProps = (state) => {
+    return { homeNav: state.homeNav }
 }
 
 export default connect(mapStateToProps)(MainNavigatorState)

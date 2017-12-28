@@ -14,6 +14,7 @@ const stackApp = {
 const stackAppConfig = {
     navigationOptions: {
         header: null,
+        swipeEnabled:true
 
     }
 }
