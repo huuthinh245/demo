@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, TextInput, Dimensions, Image, Keyboard, FlatList, Alert } from 'react-native'
+import { Icon } from 'native-base'
 import { connect } from 'react-redux'
 import * as ActionTypes from './types'
 import { Text } from 'native-base'
@@ -11,30 +12,32 @@ const strings = {
 }
 var { height, width } = Dimensions.get('window');
 
-const resetAction = NavigationActions.back({
-    routeName: 'Authencation',
-
+const actionToDispatch = NavigationActions.reset({
+    index: 0,
+    key: null,  // black magic
+    actions: [NavigationActions.navigate({ routeName: 'Authencation' })]
 })
-//   const goHome = NavigationActions.navigate({
-//     routeName: 'Authencation',
-//     params: {}
-//   })
 
 class MainHome extends Component {
     static navigationOptions = {
+        drawerLabel: 'Main',
+        drawerIcon: () => (
+            <Icon name='home' />
+        ),
         title: 'main',
         //center title
-        headerTitleStyle:{
+        headerTitleStyle: {
             alignSelf: 'center',
             justifyContent: 'space-between',
             textAlign: 'center',
 
         },
         // style header
-        headerStyle:{
-            backgroundColor:'#2980b9'
+        headerStyle: {
+            backgroundColor: '#2980b9'
         },
     }
+
     constructor(props) {
         super(props)
         this.state = {
@@ -43,10 +46,10 @@ class MainHome extends Component {
         //console.disableYellowBox = true;
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log('reset')
     }
-    
+
     renderLoading() {
         return (
             this.props.fetching ? <Text>Loading....</Text> : null
@@ -63,14 +66,11 @@ class MainHome extends Component {
     }
 
     signOut() {
-        const { rootNavigation } = this.props.screenProps;
-        // this.props.navigation.dispatch(resetAction)
-        rootNavigation.dispatch(resetAction)
-        //this.props.navigation.dispatch(goHome)
+        this.props.navigation.dispatch(actionToDispatch)
     }
 
-
     _keyExtractor = (item, index) => item.id;
+    
     render() {
         return (
             <View style={{ flex: 1 }}>
@@ -150,4 +150,4 @@ const mapStateToProps = (state) => {
         arr: state.userReducer.arr
     }
 }
-export default connect(mapStateToProps, )(MainHome)
+export default connect(mapStateToProps)(MainHome)

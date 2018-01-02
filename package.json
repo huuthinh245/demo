@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "start": "react-native start",
+    "test": "jest",
+    "postinstall": "rndebugger-open"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -17,12 +18,14 @@
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-observable": "^0.17.0",
+    "reselect": "^3.0.1",
     "rxjs": "^5.5.5"
   },
   "devDependencies": {
     "babel-jest": "21.2.0",
     "babel-preset-react-native": "4.0.0",
     "jest": "21.2.1",
+    "react-native-debugger-open": "^0.3.15",
     "react-test-renderer": "16.0.0"
   },
   "jest": {

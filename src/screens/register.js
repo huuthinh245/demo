@@ -4,6 +4,9 @@ import { connect } from "react-redux"
 import store from '../store'
 import {increment,decrement} from '../reducers/reduxActionReducer'
  class register  extends React.Component {
+    static navigationOptions = {
+        title:'Register'
+    }
     render() {
         return(
             <View style={{padding:20}}>

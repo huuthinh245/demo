@@ -1,39 +1,75 @@
 import detail from './screens/detail'
 import MainHome from './Main'
-import { addNavigationHelpers, StackNavigator } from 'react-navigation'
+import { addNavigationHelpers, StackNavigator, DrawerNavigator } from 'react-navigation'
 import React from 'react'
 import { connect } from 'react-redux'
-import {TouchableOpacity,Text} from 'react-native'
-const stackMain = {
+import { TouchableOpacity, Text, View, Animated } from 'react-native'
+import { Icon } from 'native-base'
+import draw2 from './screens/draw2'
+
+
+
+const DrawerStack = DrawerNavigator({
     Main: { screen: MainHome },
-    Detail: {
-        screen: detail,
-    }
-}
-const StackMainConfig = {
-    navigationOption: {
-        header: null,
-    }
-}
-export const MainNavigator = StackNavigator(stackMain, StackMainConfig);
+    screen1: { screen: detail },
+    screen2: { screen: draw2 },
+})
 
-class MainNavigatorState extends React.Component {
-    render() {
-        return (
-            <MainNavigator
-                screenProps={{ rootNavigation: this.props.navigation }}
-                navigation={
-                    addNavigationHelpers({
-                        dispatch: this.props.dispatch,
-                        state: this.props.homeNav
-                    })
+// const stackMain = {
+//      Main: { screen: MainHome },
+//      Detail: {
+//        screen: detail,
+//     },
+//     Drawer:{screen:DrawerStack}
+// }
+// const StackMainConfig = {
+//     navigationOption: {
+//         header: null,
+//     }
+// }
+//export const MainNavigator = StackNavigator(stackMain, StackMainConfig);
+
+export const MainNavigator = StackNavigator({
+    Drawer: { screen: DrawerStack }
+}, {
+        headerMode: 'float',
+        navigationOptions: ({ navigation }) => ({
+            headerStyle: { backgroundColor: '#2980b9' },
+            headerTitleStyle: { alignSelf: 'center' },
+            headerTintColor: 'white',
+            gesturesEnabled: false,
+            headerLeft: <Icon
+                onPress={() => {
+                    if (navigation.state.index === 0) {
+                        navigation.navigate('DrawerOpen')
+                    } else {
+                        navigation.navigate('DrawerClose')
+                    }
                 }
-            />
-        )
-    }
-}
-const mapStateToProps = (state) => {
-    return { homeNav: state.homeNav }
-}
+                }
+                name='menu'
+                style={{ color: 'white', }} />,
+            headerRight: <View />
+        })
+    })
 
-export default connect(mapStateToProps)(MainNavigatorState)
+// class MainNavigatorState extends React.Component {
+//     render() {
+//         return (
+//             <MainNavigator/*  */
+//                 screenProps={{ rootNavigation: this.props.navigation }}
+//                 navigation={
+//                     addNavigationHelpers({
+//                         dispatch: this.props.dispatch,
+//                         state: this.props.homeNav
+//                     })
+//                 }
+//             />
+//         )
+//     }
+// }
+// const mapStateToProps = (state) => {
+//     return { nav: state.nav }
+// }
+
+// export default connect(mapStateToProps)(MainNavigatorState)

@@ -1,14 +1,20 @@
 import { StackNavigator, addNavigationHelpers } from 'react-navigation'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import UnAuthNavigatorState from './UnAuth'
-import MainNavigatorState from './HomePage'
-
-
+import {LoginNavigator} from './UnAuth'
+import {MainNavigator} from './HomePage'
+import {  Animated } from 'react-native'
+const noTransitionConfig = () => ({
+    transitionSpec: {
+        duration: 10000,
+        timing: Animated.timing,
+        easing: Easing.step0
+    }
+})
 
 const stackApp = {
-    Authencation: { screen: UnAuthNavigatorState },
-    Home: { screen: MainNavigatorState }
+    Authencation: { screen: LoginNavigator },
+    Home: { screen: MainNavigator }
 }
 
 const stackAppConfig = {

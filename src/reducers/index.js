@@ -1,7 +1,7 @@
 import pingReducer from './pingReducer';
 import userReducer from './userReducer'
 import { combineReducers } from 'redux';
-import { nav, unAuthNav,homeNav } from './navigateReducer'
+import { nav, } from './navigateReducer'
 import { AuthRuducer } from './authReducer'
 import actionReducer from './reduxActionReducer'
 export default combineReducers({
@@ -9,7 +9,7 @@ export default combineReducers({
     userReducer,
     nav,
     AuthRuducer,
-    unAuthNav,
-    homeNav,
+    // unAuthNav,
+    // homeNav,
     actionReducer
 })

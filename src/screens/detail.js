@@ -7,6 +7,10 @@ import {Icon} from 'native-base'
 class detail extends Component {
     static navigationOptions = ({ navigation, screenProps }) => ({
         title: 'detail',
+        drawerLabel: 'detail',
+        drawerIcon:()=>(
+            <Icon name='home'/>
+        ),
         headerStyle:{
             backgroundColor:'#2980b9'
         },

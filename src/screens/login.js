@@ -11,19 +11,21 @@ var { height, width } = Dimensions.get('window');
 
 class login extends Component {
     static navigationOptions = {
-        header: null
+        title: 'Authencation'
     }
     constructor(props) {
         super(props)
         console.disableYellowBox = true
-        this.state = { username: 'huuthinh2209@gmail.com', password: '123456' }
+        this.state = { username: 'huuthinh2209@gmail.com.vn', password: '123456' }
     }
+
     componentDidMount() {
 
     }
+
     _login() {
-        const { rootNav } = this.props.screenProps;
-        rootNav.navigate('Home')
+        //const { rootNav } = this.props.screenProps;
+        this.props.navigation.navigate('Home')
         //const { username, password } = this.state
         // this.setState({ loading: true })
         // setTimeout(() => {
@@ -33,6 +35,7 @@ class login extends Component {
         // this.props.dispatch({ type: ActionTypes.LOGIN_USER, payload: { username, password } })
         // console.log(this.props.loading)
     }
+
     renderButton() {
         return (
             this.props.loading ?
@@ -47,13 +50,12 @@ class login extends Component {
     }
 
     render() {
-
         return (
-            <View style={{ flex: 1, padding: 10, justifyContent: 'center', backgroundColor: '#BBD2C5' }}>
+            <View style={styles.wraper}>
                 <View style={{ marginTop: width / 2 }}>
                     <View style={{ marginBottom: 10, alignItems: 'center' }}>
                         <TextInput
-                            style={{ width: 400, backgroundColor: 'white', borderRadius: 50 }}
+                            style={{ width: 400, backgroundColor: 'white', borderRadius: 20 }}
                             underlineColorAndroid='rgba(0,0,0,0)'
                             onChangeText={(username) => this.setState({ username })}
                             value={this.state.username}
@@ -85,7 +87,7 @@ const styles = {
         fontSize: 16,
         fontWeight: '600',
         paddingTop: 10,
-        paddingBottom: 10
+        paddingBottom: 10,
     },
     buttonStyle: {
         alignSelf: 'stretch',
@@ -96,6 +98,12 @@ const styles = {
         marginRight: 5,
         marginTop: 5
     },
+    wraper: {
+        flex: 1,
+        padding: 10,
+        justifyContent: 'center',
+        backgroundColor: 'rgba(192,192,192, 0.5)',
+    }
 }
 const mapStateToProps = (state) => {
     return {

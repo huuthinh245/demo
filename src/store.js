@@ -5,7 +5,12 @@ import rootEpics from './epics';
 
 const epicMiddleware = createEpicMiddleware(rootEpics);
 
-
-const store = createStore(rootReducers, {}, compose(applyMiddleware(epicMiddleware)));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancers = [
+    applyMiddleware(
+      epicMiddleware,
+    ),
+  ];
+const store = createStore(rootReducers, {}, composeEnhancers(...enhancers));
 
 export default store
