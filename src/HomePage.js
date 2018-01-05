@@ -38,6 +38,7 @@ export const MainNavigator = StackNavigator({
             headerTitleStyle: { alignSelf: 'center' },
             headerTintColor: 'white',
             gesturesEnabled: false,
+            swipeEnabled:false,
             headerLeft: <Icon
                 onPress={() => {
                     if (navigation.state.index === 0) {

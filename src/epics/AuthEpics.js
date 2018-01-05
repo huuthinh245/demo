@@ -3,6 +3,13 @@ import { Observable } from 'rxjs'
 import firebase from 'firebase'
 import * as ActionTypes from '../types'
 import store from '../store'
+import { NavigationActions } from 'react-navigation'
+
+const navigateAction = NavigationActions.navigate({
+
+    routeName: 'Home',
+
+})
 const signinApi = (username, password) => Observable.fromPromise(
     firebase.auth().signInWithEmailAndPassword(username, password)
 )
@@ -14,7 +21,7 @@ const signOutApi = () => Observable.fromPromise(
 export const loginUser = action$ => action$.ofType(ActionTypes.LOGIN_USER)
     .mergeMap(action => signinApi(action.payload.username, action.payload.password)
         .map(user => {
-            store.dispatch({ type: 'Login' })
+            store.dispatch(navigateAction)
             return {
                 type: ActionTypes.LOGIN_USER_SUCCESS,
                 payload: user.email

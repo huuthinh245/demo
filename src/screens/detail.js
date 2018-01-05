@@ -29,9 +29,6 @@ class detail extends Component {
 
     })
 
-    componentDidMount() {
-
-    }
     render() {
         return (
             <View>

@@ -18,6 +18,10 @@ const actionToDispatch = NavigationActions.reset({
     actions: [NavigationActions.navigate({ routeName: 'Authencation' })]
 })
 
+const actionToDispatch1 = NavigationActions.navigate({
+    routeName:'screen1'
+})
+
 class MainHome extends Component {
     static navigationOptions = {
         drawerLabel: 'Main',
@@ -66,7 +70,9 @@ class MainHome extends Component {
     }
 
     signOut() {
-        this.props.navigation.dispatch(actionToDispatch)
+        this.props.dispatch( NavigationActions.navigate({
+            routeName:'screen1'
+        }))
     }
 
     _keyExtractor = (item, index) => item.id;
@@ -114,7 +120,7 @@ class MainHome extends Component {
                         <View style={{ flexDirection: 'row', flex: 3, margin: 20 }}>
                             <View style={{ borderWidth: 2, borderColor: 'blue', borderRadius: 25 }}>
                                 <Image source={{ uri: item.avatar_url }}
-                                    style={{ width: 50, height: 50, borderRadius: 25 }} />
+                                    style={{ width: 50, height: 50, borderRadius: 25, resizeMode:'contain'}} />
                             </View      >
                             <TouchableOpacity
                                 onPress={() => {

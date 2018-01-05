@@ -26,14 +26,13 @@ class login extends Component {
     _login() {
         //const { rootNav } = this.props.screenProps;
         this.props.navigation.navigate('Home')
-        //const { username, password } = this.state
+        // const { username, password } = this.state
         // this.setState({ loading: true })
         // setTimeout(() => {
         //     this.props.dispatch({ type: ActionTypes.LOGIN_USER, payload: { username, password } })
         //     this.setState({ loading: false })
-        // }, 5000)   
-        // this.props.dispatch({ type: ActionTypes.LOGIN_USER, payload: { username, password } })
-        // console.log(this.props.loading)
+        // }, 3000)   
+        // //this.props.dispatch({ type: ActionTypes.LOGIN_USER, payload: { username, password } })
     }
 
     renderButton() {

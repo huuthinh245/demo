@@ -6,7 +6,7 @@ import {MainNavigator} from './HomePage'
 import {  Animated } from 'react-native'
 const noTransitionConfig = () => ({
     transitionSpec: {
-        duration: 10000,
+        duration: 1000,
         timing: Animated.timing,
         easing: Easing.step0
     }
@@ -20,7 +20,8 @@ const stackApp = {
 const stackAppConfig = {
     navigationOptions: {
         header: null,
-        swipeEnabled:true
+        swipeEnabled:false,
+        gesturesEnabled:false
 
     }
 }
