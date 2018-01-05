@@ -32,7 +32,6 @@ public class OpenSettingsModule extends ReactContextBaseJavaModule {
             cb.invoke(false);
             return;
         }
-
         try {
             currentActivity.startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + BuildConfig.APPLICATION_ID)));;
             cb.invoke(true);
